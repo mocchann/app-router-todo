@@ -1,16 +1,18 @@
+import Link from "next/link";
+
 const TodoIndex = () => {
   return (
     <>
       <h2>todo index</h2>
       <ul>
         <li>
-          todo1<button>edit</button>
+          todo1<Link href={"/todo/1/edit"}>edit</Link>
         </li>
         <li>
-          todo2<button>edit</button>
+          todo2<Link href={"/todo/2/edit"}>edit</Link>
         </li>
         <li>
-          todo2<button>edit</button>
+          todo2<Link href={"/todo/3/edit"}>edit</Link>
         </li>
       </ul>
     </>
