@@ -4,6 +4,9 @@ const TodoIndex = () => {
   return (
     <>
       <h2>todo index</h2>
+      <button>
+        <Link href={"/todo/create"}></Link>
+      </button>
       <ul>
         <li>
           todo1<Link href={"/todo/1/edit"}>edit</Link>
