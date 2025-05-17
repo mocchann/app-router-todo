@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { PrismaClient } from "../../../../generated/prisma";
 
 const prisma = new PrismaClient();
@@ -16,6 +17,8 @@ const handleCreate = async (formData: FormData) => {
       todo: todo.toString(),
     },
   });
+
+  redirect("/todo");
 };
 
 const TodoCreate = () => {
