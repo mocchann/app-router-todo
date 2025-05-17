@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { PrismaClient } from "../../../generated/prisma";
 
-const TodoIndex = () => {
+const TodoIndex = async () => {
+  const prisma = new PrismaClient();
+  const todos = await prisma.todos.findMany();
+
   return (
     <>
       <h2>todo index</h2>
@@ -8,15 +12,12 @@ const TodoIndex = () => {
         <Link href={"/todo/create"}>create</Link>
       </button>
       <ul>
-        <li>
-          todo1<Link href={"/todo/1/edit"}>edit</Link>
-        </li>
-        <li>
-          todo2<Link href={"/todo/2/edit"}>edit</Link>
-        </li>
-        <li>
-          todo2<Link href={"/todo/3/edit"}>edit</Link>
-        </li>
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            {todo.todo}
+            <Link href={`/todo/${todo.id}/edit`}>edit</Link>
+          </li>
+        ))}
       </ul>
     </>
   );
