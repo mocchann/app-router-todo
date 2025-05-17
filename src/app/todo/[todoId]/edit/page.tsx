@@ -25,6 +25,24 @@ const handleUpdate = async (formData: FormData) => {
   redirect("/todo");
 };
 
+const handleDelete = async (formData: FormData) => {
+  "use server";
+
+  const todoId = formData.get("id");
+
+  if (todoId === null) {
+    return;
+  }
+
+  await prisma.todos.delete({
+    where: {
+      id: parseInt(todoId.toString()),
+    },
+  });
+
+  redirect("/todo");
+};
+
 const TodoEdit = async ({ params }: { params: { todoId: string } }) => {
   const todo = await prisma.todos.findUnique({
     where: {
@@ -44,8 +62,9 @@ const TodoEdit = async ({ params }: { params: { todoId: string } }) => {
         <input type="hidden" name="id" value={todo.id} />
         <input type="text" name="todo" defaultValue={todo.todo} />
       </form>
-      <form action="/todo/1/delete" method="post">
-        <button>delete</button>
+      <form action={handleDelete}>
+        <input type="hidden" name="id" value={todo.id} />
+        <button type="submit">delete</button>
       </form>
     </>
   );
