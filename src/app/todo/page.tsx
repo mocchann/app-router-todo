@@ -14,8 +14,7 @@ const TodoIndex = async () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            {todo.todo}
-            <Link href={`/todo/${todo.id}/edit`}>edit</Link>
+            {todo.todo} <Link href={`/todo/${todo.id}/edit`}>edit</Link>
           </li>
         ))}
       </ul>
