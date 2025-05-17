@@ -5,7 +5,7 @@ const TodoIndex = () => {
     <>
       <h2>todo index</h2>
       <button>
-        <Link href={"/todo/create"}></Link>
+        <Link href={"/todo/create"}>create</Link>
       </button>
       <ul>
         <li>
